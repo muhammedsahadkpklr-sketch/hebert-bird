@@ -2,7 +2,7 @@ import pygame
 import sys
 import random
 
-# Pygame & Mixer Initialize ചെയ്യുക (സെർവറുകളിൽ ക്രാഷ് ആവാതിരിക്കാൻ try-except)
+# Pygame & Mixer Initialize ചെയ്യുക (ക്രാഷ് ആവാതിരിക്കാൻ try-except)
 pygame.init()
 try:
     pygame.mixer.init()
@@ -10,11 +10,11 @@ try:
 except:
     sound_enabled = False
 
-# സ്ക്രീൻ വലിപ്പം (മൊബൈൽ സ്ക്രീനിന് അനുയോജ്യമായ സൈസ്)
+# സ്ക്രീൻ വലിപ്പം
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("HEBERT BIRD")
+pygame.display.set_caption("HEBERT Bird")
 
 clock = pygame.time.Clock()
 FPS = 30
@@ -24,19 +24,19 @@ WHITE = (255, 255, 255)
 GREEN = (0, 200, 0)
 BLUE = (135, 206, 235)
 
-# കസ്റ്റം ഫേസ് ലോഡ് ചെയ്യുന്നു
+# കസ്റ്റം ഫേസ് ലോഡ് ചെയ്യുന്നു (face.png)
 try:
-    bird_img = pygame.image.load("IMG_2873_1793962386765.png")
+    bird_img = pygame.image.load("face.png")
     bird_img = pygame.transform.scale(bird_img, (40, 40))
 except:
     bird_img = pygame.Surface((40, 40))
     bird_img.fill((255, 200, 0))
 
-# സൗണ്ട് ഫയലുകൾ ലോഡ് ചെയ്യുന്നു
+# സൗണ്ട് ഫയലുകൾ ലോഡ് ചെയ്യുന്നു (.m4a മാത്രം)
 try:
     if sound_enabled:
-        score_sound = pygame.mixer.Sound("score.wav_1793962073417.m4a")
-        gameover_sound = pygame.mixer.Sound("gameover.wav_1793962073416.m4a")
+        score_sound = pygame.mixer.Sound("score.m4a")
+        gameover_sound = pygame.mixer.Sound("gameover.m4a")
     else:
         score_sound = None
         gameover_sound = None
@@ -99,7 +99,6 @@ while True:
             pygame.quit()
             sys.exit()
             
-        # ടച്ച് അല്ലെങ്കിൽ കീബോർഡ് ഇവന്റുകൾ
         if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
             if game_active:
                 bird_movement = 0
